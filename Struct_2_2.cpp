@@ -1,4 +1,4 @@
-﻿#define Debug
+﻿//#define Debug
 
 #include <iostream>
 #include <complex>
@@ -7,12 +7,13 @@
 #include <thread>
 #include <cstdlib>
 #include <omp.h>
+
 using namespace::std;
 using namespace::chrono;
 
 //unsigned int size_ = 1024;
 
-unsigned int size_ = 5;
+unsigned int size_ = 1024;
 unsigned int sizeSquared = size_*size_;
 
 // 1 замер - > 
@@ -79,7 +80,7 @@ complex<double>* firstMethod(const complex<double>* A, complex<double>* B)//Пе
 	complex <double>* Arr = new complex<double>[sizeSquared];
 	complex <double>* tB = transpose(B);
 
-	omp_set_num_threads(8);
+	omp_set_num_threads(2000);
 	{
 		unsigned int i, j, k;
 #pragma omp parallel for;
@@ -201,9 +202,6 @@ int main()
 #endif // gebug
 
 	firstAlgorithm(Array1, Array2);//Из линейной алгебры
-
-	
-
 
 }
 
